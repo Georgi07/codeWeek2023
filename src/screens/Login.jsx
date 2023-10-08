@@ -2,14 +2,18 @@ import { StyleSheet,Text, View, Image, TextInput,Button } from 'react-native'
 import React, { Component } from 'react'
 import Cat from '../assets/test.png'
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
 
 
-  const OnLogin = ()=> {
+  const OnLogin = () => {
+    let isUsernameValid = username.length > 3
+    let isPasswordValid = password.length > 6
 
-    console.log("username",username,password)
+    if(isUsernameValid && isPasswordValid)
+      navigation.navigate("Home")
+   
   }
  
     return (
@@ -41,13 +45,13 @@ const Login = () => {
               />
           </View>
           <View> 
-          <Button
-            onPress={OnLogin}
-            title="Login"
-            color="#841584"
-            accessibilityLabel="Learn more about this purple button"
-          />
-            </View>
+            <Button
+              onPress={OnLogin}
+              title="Login"
+              color="#841584"
+              accessibilityLabel="Learn more about this purple button"
+            />
+          </View>
         </View>
         <View></View>
       </View>
@@ -61,6 +65,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
     //   alignItems: 'center',
     //   justifyContent: 'center',
+    margin: 10
     },
     box:{
         alignItems:'center',
