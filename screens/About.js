@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, Image } from 'react-native';
 export default function About() {
   return (
     <View style={styles.container}>
-      <Text>Hello, I am a memeber of CodeWeek2023</Text>
+      <Text>Hello, I am a member of CodeWeek2023</Text>
 
       <Text>And I am building a mobile app using React Native</Text>
       <Button title='Test'/>
