@@ -1,21 +1,34 @@
 import { StyleSheet,Text, View, Image, TextInput,Button } from 'react-native'
 import React, { Component } from 'react'
+import {validateUsernameAndPassword} from '../services/validation'
+
 import Cat from '../assets/test.png'
 
 const Login = ({navigation}) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState('');
 
 
   const OnLogin = () => {
-    let isUsernameValid = username.length > 3
-    let isPasswordValid = password.length > 6
+    const errorMessage = validateUsernameAndPassword(username,password)
+     if(errorMessage){
+      setError(errorMessage)
 
-    if(isUsernameValid && isPasswordValid)
+      // setTimeout(() => {
+      //   setError('')
+      // }, 5000);
+
+     }else{
       navigation.navigate("Home")
-   
+     }
   }
- 
+
+  React.useEffect(() => {
+    setError("")
+  },[username,password]);
+
+
     return (
       <View style={styles.container}>
         <View style={styles.box}> 
@@ -33,7 +46,7 @@ const Login = ({navigation}) => {
           <View>
               <TextInput
                 style={styles.input}
-                onChangeText={(v)=>{setUsername(v)}}
+                onChangeText={setUsername}
                 value={username}
               />
           </View>
@@ -51,6 +64,7 @@ const Login = ({navigation}) => {
               color="#841584"
               accessibilityLabel="Learn more about this purple button"
             />
+            {error && <Text>{error}</Text> }
           </View>
         </View>
         <View></View>
