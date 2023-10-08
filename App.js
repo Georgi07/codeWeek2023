@@ -16,7 +16,7 @@ export default function App() {
       styles={styles}
       initialRouteName="Login">
       <Tab.Navigator>
-        <Tab.Screen name="Login" component={Login} />
+        <Tab.Screen name="Login" component={Login} />   
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="About" component={About} />
       </Tab.Navigator>
